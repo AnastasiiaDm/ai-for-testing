@@ -50,17 +50,16 @@ python -m pip install -r requirements.txt
 
 ## Run Tests
 
-Use the venv interpreter explicitly:
 
 ```bash
-PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -p pytest_bdd
+pytest
 ```
 
 ## Configuration
 
 Supported environment variables:
 - `PYPI_BASE_URL` (default: `https://pypi.org`)
-- `UI_WAIT_TIMEOUT` (default: `15` seconds)
+- `UI_WAIT_TIMEOUT` (default: `3` seconds)
 - `HEADLESS` (default: `true`)
 - `CHROMEDRIVER_PATH` (optional override for local driver binary)
 
@@ -69,10 +68,3 @@ Example:
 ```bash
 HEADLESS=false UI_WAIT_TIMEOUT=20 python -m pytest -q -p pytest_bdd
 ```
-
-## Design Notes
-
-- No `sleep` calls are used. Synchronization relies on explicit waits (`WebDriverWait` + expected conditions).
-- Locators and actions are encapsulated in page objects.
-- Base URL and wait timeout are configurable to avoid hardcoding.
-- Tests follow Python best practices and readable BDD step definitions.
